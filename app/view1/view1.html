@@ -1,5 +1,7 @@
-<h1 ng-if="currentUser">Hallo, {{loginUser.name }}</h1>
-
+<div ng-if="currentUser">
+    <h1 id="entry">{{ loginMessage }}</h1>
+    <button type="submit" ng-click="logout()" id="logout">Log Out</button>
+</div>
 
 <div ng-if="!currentUser">
     <h2>Login Form </h2>
@@ -13,6 +15,6 @@
 
             <button type="submit" value="Login" ng-click="login()">Login</button>
         </div>
-        <div id="error">{{ loginMessage }}</div>
+        <h1 id="error">{{ loginMessage }}</h1>
     </ng-form>
 </div>

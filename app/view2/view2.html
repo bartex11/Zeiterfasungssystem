@@ -1,10 +1,5 @@
-<p>This is the partial for view 2.</p>
-
 <div ng-if="currentUser">
-    <div>
-        <h1>Wilkommen {{ name }}</h1> <br>
 
-    </div>
     <div>
         <button ng-show="!hasCheckedIn && !isAdmin " type="submit" ng-click="checkIn()">Check In</button>
         <button ng-show="hasCheckedIn && !isAdmin" type="submit" id="checkout" ng-click="checkOut()">Check Out</button>
@@ -32,6 +27,6 @@
             </tr>
         </table>
         <!-    {{timetable}} ->
-        <button type="submit" ng-click="logout()" id="logout">Log Out</button>
+
     </div>
 </div>

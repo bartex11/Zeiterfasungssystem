@@ -78,6 +78,10 @@ span.psw {
     color: red;
 }
 
+#entry {
+    color: green;
+}
+
 table,
 th,
 td {

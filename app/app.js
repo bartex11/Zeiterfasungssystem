@@ -70,7 +70,9 @@ app.controller('mainCtrl', function($scope, allEmployees, userTimetable) {
                 $scope.timetable = userTimetable[$scope.currentUser];
                 $scope.isAdmin = false;
             }
-            $scope.loginMessage = $scope.loginUser.name + 'Sie sind angemeldet.';
+
+            $scope.loginMessage = $scope.loginUser.name + ', Sie sind angemeldet.';
+
         } else {
             $scope.loginMessage = 'Oppps. Ungültige Username oder Password.';
         }
