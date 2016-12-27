@@ -1,1 +1,18 @@
-<p>This is the partial for view 1.</p>
+<h1 ng-if="currentUser">Hallo, {{loginUser.name }}</h1>
+
+
+<div ng-if="!currentUser">
+    <h2>Login Form </h2>
+    <ng-form name="loginForm">
+        <div class="container">
+            <label><b>Name</b></label><br>
+            <input type="text" placeholder="Enter Name" name="username" id="username" ng-model="loginUser.name" required><br>
+
+            <label><b>Password</b></label><br>
+            <input type="password" placeholder="Enter Password" name="password" id="password" ng-model="loginUser.password" required><br>
+
+            <button type="submit" value="Login" ng-click="login()">Login</button>
+        </div>
+        <div id="error">{{ loginMessage }}</div>
+    </ng-form>
+</div>

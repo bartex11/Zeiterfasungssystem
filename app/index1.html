@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zeiterfasunssystem</title>
+    <script>
+        /*document.write('<base href="' + document.location + '" />');*/
+        document.write('<base href="index.html" />');
+    </script>
+    <link rel="stylesheet" href="app.css" />
+    <script data-require="angular.js@1.5.x" src="https://code.angularjs.org/1.5.8/angular.js" data-semver="1.5.8"></script>
+    <script data-require="ui-router@0.3.1" data-semver="0.3.1" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+    <script data-require="angular-route@*" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <!-- loginForm -->
+    <ul class="menu">
+        <li><a href="#!/view1">view1</a></li>
+        <li><a href="#!/view2">view2</a></li>
+    </ul>
+
+    <div ng-view></div>
+
+    <div ng-if="!currentUser">
+        <h2>Login Form </h2>
+        <ng-form name="loginForm">
+            <div class="container">
+                <label><b>Name</b></label><br>
+                <input type="text" placeholder="Enter Name" name="username" id="username" ng-model="loginUser.name" required><br>
+
+                <label><b>Password</b></label><br>
+                <input type="password" placeholder="Enter Password" name="password" id="password" ng-model="loginUser.password" required><br>
+
+                <button type="submit" value="Login" ng-click="login()">Login</button>
+            </div>
+            <div id="error">{{ loginMessage }}</div>
+        </ng-form>
+    </div>
+
+    <div ng-if="currentUser">
+        <div>
+            <h1>Wilkommen {{ currentUser.name }}</h1> <br>
+
+        </div>
+        <div>
+            <button ng-show="!hasCheckedIn && !isAdmin " type="submit" ng-click="checkIn()">Check In</button>
+            <button ng-show="hasCheckedIn && !isAdmin" type="submit" id="checkout" ng-click="checkOut()">Check Out</button>
+            <br/>
+        </div>
+
+        <div>
+            <h2>Time Table </h2>
+            <table>
+                <tr>
+                    <th>N:</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>StartTime</th>
+                    <th>EndTime</th>
+                    <th>Sumary</th>
+                </tr>
+                <tr ng-repeat="x in timetable">
+                    <td>{{ $index +1 }}</td>
+                    <td>{{x.name}}</td>
+                    <td>{{x.startTime.toDateString()}}</td>
+                    <td>{{x.startTime.toLocaleTimeString('de-DE') }}</td>
+                    <td>{{x.endTime.toLocaleTimeString('de-DE') }}</td>
+                    <td> {{ calcHours(x.startTime, x.endTime) }}</td>
+                </tr>
+            </table>
+            <!-    {{timetable}} ->
+            <button type="submit" ng-click="logout()" id="logout">Log Out</button>
+        </div>
+    </div>
+</body>
+
+</html>

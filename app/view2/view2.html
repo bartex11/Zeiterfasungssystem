@@ -1,5 +1,37 @@
 <p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+
+<div ng-if="currentUser">
+    <div>
+        <h1>Wilkommen {{ name }}</h1> <br>
+
+    </div>
+    <div>
+        <button ng-show="!hasCheckedIn && !isAdmin " type="submit" ng-click="checkIn()">Check In</button>
+        <button ng-show="hasCheckedIn && !isAdmin" type="submit" id="checkout" ng-click="checkOut()">Check Out</button>
+        <br/>
+    </div>
+
+    <div>
+        <h2>Time Table </h2>
+        <table>
+            <tr>
+                <th>N:</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>StartTime</th>
+                <th>EndTime</th>
+                <th>Sumary</th>
+            </tr>
+            <tr ng-repeat="x in timetable">
+                <td>{{ $index +1 }}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.startTime.toDateString()}}</td>
+                <td>{{x.startTime.toLocaleTimeString('de-DE') }}</td>
+                <td>{{x.endTime.toLocaleTimeString('de-DE') }}</td>
+                <td> {{ calcHours(x.startTime, x.endTime) }}</td>
+            </tr>
+        </table>
+        <!-    {{timetable}} ->
+        <button type="submit" ng-click="logout()" id="logout">Log Out</button>
+    </div>
+</div>
